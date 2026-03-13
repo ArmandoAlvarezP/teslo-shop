@@ -8,3 +8,4 @@ export { PageNotFound } from "./ui/not-found/PageNotFound";
 export { TopMenu } from "./ui/top-menu/TopMenu";
 export * from "./product/slideshow/ProductSlideshow";
 export * from "./product/slideshow/ProductMobileSlideshow";
+export * from "./ui/footer/Footer";
