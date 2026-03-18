@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { SizeSelector, QuantitySelector, ProductSlideshow, ProductMobileSlideshow, StockLabel } from '@/components';
 import { getProductBySlug } from "@/actions";
 import { Metadata, ResolvingMetadata } from "next";
+import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
     params: {
@@ -74,21 +75,7 @@ export default async function ProductPage({ params }: Props) {
                 {/* StockLabel */}
                 <StockLabel slug={product.slug} />
 
-                {/* Selector de Tallas */}
-                <SizeSelector
-                    selectedSize={product.sizes[0]}
-                    availableSizes={product.sizes}
-                />
-
-                {/* Selector de Cantidad */}
-                <QuantitySelector
-                    quantity={1}
-                />
-
-                {/* Button */}
-                <button className="btn-primary my-5" >
-                    Agregar al carrito
-                </button>
+                <AddToCart product={product}/>
 
                 {/* Descripción */}
                 <h3 className="font-bold text-sm">Descripción</h3>
