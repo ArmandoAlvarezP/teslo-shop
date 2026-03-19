@@ -10,6 +10,23 @@ export const authConfig = {
         signIn: '/auth/login',
         newUser: '/auth/new-account',
     },
+
+    callbacks: {
+        jwt( {token, user} ){
+
+            if( user ){
+                token.data = user;
+            }
+
+            return token;
+        }, 
+
+        session( { session, token } ) {
+            session.user = token.data as never;
+            return session;
+        }
+    },
+
     providers: [
         Credentials({
             async authorize(credentials) {
@@ -39,11 +56,12 @@ export const authConfig = {
                 
                 // Regresar el usuario sin el password 
                 const { password: _, ...rest} = user;
-                console.log({rest})
+    
                 return rest;
             },
         }),
-    ]
+    ],
+    trustHost: true, 
 } satisfies NextAuthConfig;
 
-export const { signIn, signOut, auth: middleware } = NextAuth( authConfig );
+export const { signIn, signOut, auth, handlers} = NextAuth( authConfig );
