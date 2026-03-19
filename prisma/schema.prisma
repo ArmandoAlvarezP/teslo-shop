@@ -12,7 +12,6 @@ datasource db {
   provider = "postgresql"
 }
 
-
 enum Size {
   XS
   S
@@ -28,6 +27,11 @@ enum Gender {
   women
   kid
   unisex
+}
+
+enum Role {
+  admin
+  user
 }
 
 model Category {
@@ -48,9 +52,9 @@ model Product {
   gender      Gender
 
   // Relaciones
-  
-  category     Category       @relation(fields: [categoryId], references: [id])
-  categoryId   String
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
 
   ProductImage ProductImage[]
 
@@ -63,4 +67,13 @@ model ProductImage {
 
   product   Product @relation(fields: [productId], references: [id])
   productId String
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String    @unique
+  emailVerified DateTime?
+  password      String
+  role          Role      @default(user)
+  email         String?
 }

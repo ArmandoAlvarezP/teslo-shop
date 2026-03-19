@@ -12,5 +12,6 @@
 
 ## Prisma 
 ```npx prisma init --datasource-provider PostgreSQL```
+```npx prisma db seed```
 
 ## Correr en producción 
