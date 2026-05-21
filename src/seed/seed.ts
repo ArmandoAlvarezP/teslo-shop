@@ -1,4 +1,5 @@
 import bpcryptjs from 'bcryptjs';
+import { countries } from './seed-countries';
 
 interface SeedProduct {
     description: string;
@@ -20,6 +21,11 @@ interface SeedUser {
     role: 'admin' | 'user';
 }
 
+interface SeedCountry { 
+    name: string;
+    id: string;
+}
+
 type ValidSizes = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL';
 type ValidTypes = 'shirts'|'pants'|'hoodies'|'hats';
 
@@ -27,6 +33,7 @@ interface SeedData {
     users: SeedUser[],
     categories: string[],
     products: SeedProduct[],
+    countries: SeedCountry[],
 }
 
 
@@ -836,5 +843,7 @@ export const initialData: SeedData = {
             title: "Kids Corp Jacket",
             gender: 'kid'
         },
-    ]
+    ], 
+
+    countries: countries,
 }

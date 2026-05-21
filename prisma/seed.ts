@@ -16,10 +16,11 @@ export async function main() {
         prisma.productImage.deleteMany(),
         prisma.product.deleteMany(),
         prisma.category.deleteMany(),
+        prisma.country.deleteMany(),
     ])
 
     
-    const { categories, products, users } = initialData;
+    const { categories, products, users, countries } = initialData;
     
     // Users
 
@@ -85,6 +86,15 @@ export async function main() {
     } );
 
 
+    // Countries 
+    const countriesData = countries.map( country => ({
+        id: country.id,
+        name: country.name
+    }));
+
+    await prisma.country.createMany({
+        data: countriesData
+    })
 
     console.log('Seed ejecutado correctamente');
 }
